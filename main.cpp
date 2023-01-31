@@ -4,6 +4,24 @@
 
 class MainWindow : public QWidget
 {
+private:
+   QLineEdit *anzeige;
+   void clicked_0();
+   void clicked_1();
+   void clicked_2();
+   void clicked_3();
+   void clicked_4();
+   void clicked_5();
+   void clicked_6();
+   void clicked_7();
+   void clicked_8();
+   void clicked_9();
+   void plus_clicked();
+   void minus_clicked();
+   void mal_clicked();
+   void geteilt_clicked();
+   void gleich_clicked();
+   void AC_clicked();
 public:
    MainWindow();
 };
@@ -48,7 +66,7 @@ MainWindow::MainWindow()
    pb_16->setText("close");
 
    
-   QLineEdit *anzeige = new QLineEdit();
+   anzeige = new QLineEdit();
    anzeige->setText("0");
    anzeige->setReadOnly(true);
    anzeige->setAlignment(Qt::AlignRight);
@@ -83,11 +101,35 @@ MainWindow::MainWindow()
    layout1->addWidget(pb_16);
    layout1->addStretch();
 
+   QHBoxLayout *layout2 = new QHBoxLayout();
+   layout1->addStretch();
+   layout1->addWidget(anzeige);
+   layout1->addStretch();
+
    QVBoxLayout *layoutMain = new QVBoxLayout(this);
+   layoutMain->addLayout(layout2);
+   layoutMain->addSpacing(25);
    layoutMain->addLayout(grid1);
    layoutMain->addSpacing(75);
    layoutMain->addLayout(layout1);
 
+   connect(pb_16, &QPushButton::clicked, this, &QWidget::close);
+   connect(pb_0, &QPushButton::clicked, this, &MainWindow::clicked_0);
+   connect(pb_1, &QPushButton::clicked, this, &MainWindow::clicked_1);
+   connect(pb_2, &QPushButton::clicked, this, &MainWindow::clicked_2);
+   connect(pb_3, &QPushButton::clicked, this, &MainWindow::clicked_3);
+   connect(pb_4, &QPushButton::clicked, this, &MainWindow::clicked_4);
+   connect(pb_5, &QPushButton::clicked, this, &MainWindow::clicked_5);
+   connect(pb_6, &QPushButton::clicked, this, &MainWindow::clicked_6);
+   connect(pb_7, &QPushButton::clicked, this, &MainWindow::clicked_7);
+   connect(pb_8, &QPushButton::clicked, this, &MainWindow::clicked_8);
+   connect(pb_9, &QPushButton::clicked, this, &MainWindow::clicked_9);
+   connect(pb_10, &QPushButton::clicked, this, &MainWindow::plus_clicked);
+   connect(pb_11, &QPushButton::clicked, this, &MainWindow::minus_clicked);
+   connect(pb_12, &QPushButton::clicked, this, &MainWindow::mal_clicked);
+   connect(pb_13, &QPushButton::clicked, this, &MainWindow::geteilt_clicked);
+   connect(pb_14, &QPushButton::clicked, this, &MainWindow::gleich_clicked);
+   connect(pb_15, &QPushButton::clicked, this, &MainWindow::AC_clicked);
 }
 
 
