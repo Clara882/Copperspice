@@ -6,6 +6,7 @@ class MainWindow : public QWidget
 {
 private:
    QLineEdit *anzeige;
+   void los();
    void clicked_0();
    void clicked_1();
    void clicked_2();
@@ -22,6 +23,12 @@ private:
    void geteilt_clicked();
    void gleich_clicked();
    void AC_clicked();
+
+   int zahl1;
+   int zahl2;
+   double ergebnis;
+   char operation;
+
 public:
    MainWindow();
 };
@@ -65,6 +72,21 @@ MainWindow::MainWindow()
    QPushButton *pb_16 = new QPushButton();
    pb_16->setText("close");
 
+   QSlider *slider = new QSlider;
+   slider->setMinimum(0);
+   slider->setMaximum(100);
+
+   QDial *dial = new QDial;
+   dial->setMinimum(0);
+   dial->setMaximum(100);
+
+   QSpinBox *spinBox = new QSpinBox;
+   spinBox->setMinimum(0);
+   spinBox->setMaximum(100);
+
+   QProgressBar *progressBar = new QProgressBar;
+   progressBar->setMinimum(0);
+   progressBar->setMaximum(100);
    
    anzeige = new QLineEdit();
    anzeige->setText("0");
@@ -78,8 +100,7 @@ MainWindow::MainWindow()
    grid1->setHorizontalSpacing(10);
    grid1->setVerticalSpacing(20);
 
-   
-   grid1->addWidget(anzeige, 0, 0, 1, 4);
+   grid1->addWidget(anzeige, 0, 2, 1, 2);
    grid1->addWidget(pb_0, 4, 0);
    grid1->addWidget(pb_1, 1, 0);
    grid1->addWidget(pb_2, 1, 1);
@@ -95,22 +116,27 @@ MainWindow::MainWindow()
    grid1->addWidget(pb_12, 3, 3);
    grid1->addWidget(pb_13, 4, 3);
    grid1->addWidget(pb_14, 4, 2);
+   grid1->addWidget(pb_15, 4, 1);
+   grid1->addWidget(slider, 5, 3, Qt::AlignHCenter);
+   grid1->addWidget(spinBox, 5, 2, Qt::AlignHCenter);
+   grid1->addWidget(dial, 5, 1, Qt::AlignHCenter);
+
 
    QHBoxLayout *layout1 = new QHBoxLayout();
    layout1->addStretch();
    layout1->addWidget(pb_16);
    layout1->addStretch();
 
-   QHBoxLayout *layout2 = new QHBoxLayout();
+   /*QHBoxLayout *layout2 = new QHBoxLayout();
    layout1->addStretch();
    layout1->addWidget(anzeige);
    layout1->addStretch();
-
+*/
    QVBoxLayout *layoutMain = new QVBoxLayout(this);
-   layoutMain->addLayout(layout2);
-   layoutMain->addSpacing(25);
+   //layoutMain->addLayout(layout2);
+   //layoutMain->addSpacing(10);
    layoutMain->addLayout(grid1);
-   layoutMain->addSpacing(75);
+   layoutMain->addSpacing(50);
    layoutMain->addLayout(layout1);
 
    connect(pb_16, &QPushButton::clicked, this, &QWidget::close);
@@ -130,9 +156,162 @@ MainWindow::MainWindow()
    connect(pb_13, &QPushButton::clicked, this, &MainWindow::geteilt_clicked);
    connect(pb_14, &QPushButton::clicked, this, &MainWindow::gleich_clicked);
    connect(pb_15, &QPushButton::clicked, this, &MainWindow::AC_clicked);
+   connect(slider, 
+         cs_mp_cast<int>(&QSlider::valueChanged), 
+         dial, &QDial::setValue);
+   connect(spinBox, 
+         cs_mp_cast<int>(&QSpinBox::valueChanged), 
+         slider, &QSlider::setValue);
+   connect(dial, 
+         cs_mp_cast<int>(&QDial::valueChanged), 
+         spinBox, &QSpinBox::setValue);
 }
 
 
+void MainWindow::clicked_0()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("0");
+}
+void MainWindow::clicked_1()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("1");
+}
+void MainWindow::clicked_2()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("2");
+}
+void MainWindow::clicked_3()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("3");
+}
+void MainWindow::clicked_4()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("4");
+}
+void MainWindow::clicked_5()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("5");
+}
+void MainWindow::clicked_6()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("6");
+}
+void MainWindow::clicked_7()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("7");
+}
+void MainWindow::clicked_8()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("8");
+}
+void MainWindow::clicked_9()
+{
+    if(anzeige->text() == "0")
+    {
+        anzeige->clear();
+    }
+    anzeige->insert("9");
+}
+
+void MainWindow::plus_clicked()
+{
+   zahl1  = anzeige->text().toDouble();
+    operation = '+';
+    anzeige->clear();
+}
+
+void MainWindow::minus_clicked()
+{
+    zahl1 = anzeige->text().toDouble();
+    operation = '-';
+    anzeige->clear();
+}
+
+void MainWindow::mal_clicked()
+{
+    zahl1 = anzeige->text().toDouble();
+    operation = '*';
+    anzeige->clear();
+}
+
+void MainWindow::geteilt_clicked()
+{
+    zahl1 = anzeige->text().toDouble();
+    operation = '/';
+    anzeige->clear();
+}
+
+void MainWindow::AC_clicked()
+{
+    anzeige->clear();
+    anzeige->setText("0");
+    zahl1 = 0;
+    zahl2 = 0;
+    ergebnis = 0;
+}
+
+
+
+void MainWindow::gleich_clicked()
+{
+   zahl2 = anzeige->text().toDouble();
+
+   switch(operation)
+   {
+      case '+':
+         ergebnis = zahl1 +zahl2;
+         break;
+      case '-':
+         ergebnis = zahl1 -zahl2;
+         break;
+      case '*':
+         ergebnis = zahl1 *zahl2;
+         break;
+      case '/':
+         ergebnis = zahl1 /zahl2;
+         break;
+   }
+   anzeige->setText(QString::number(ergebnis));
+}
+
+
+   
 
 int main(int argc, char *argv[])
 {
