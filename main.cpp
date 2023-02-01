@@ -73,7 +73,6 @@ MainWindow::MainWindow()
 
    
    anzeige = new QLineEdit();
-   //anzeige->setText("0");
    anzeige->setReadOnly(true);
    anzeige->setAlignment(Qt::AlignRight);
 
@@ -137,19 +136,19 @@ MainWindow::MainWindow()
 
 void MainWindow::clicked_0()
 {
-    anzeige->insert("0");
+   anzeige->insert("0");
 }
 void MainWindow::clicked_1()
 {
-    anzeige->insert("1");
+   anzeige->insert("1");
 }
 void MainWindow::clicked_2()
 {
-    anzeige->insert("2");
+   anzeige->insert("2");
 }
 void MainWindow::clicked_3()
 {
-    anzeige->insert("3");
+   anzeige->insert("3");
 }
 void MainWindow::clicked_4()
 {
@@ -157,60 +156,59 @@ void MainWindow::clicked_4()
 }
 void MainWindow::clicked_5()
 {
-    anzeige->insert("5");
+   anzeige->insert("5");
 }
 void MainWindow::clicked_6()
 {
-    anzeige->insert("6");
+   anzeige->insert("6");
 }
 void MainWindow::clicked_7()
 {
-    anzeige->insert("7");
+   anzeige->insert("7");
 }
 void MainWindow::clicked_8()
 {
-    anzeige->insert("8");
+   anzeige->insert("8");
 }
 void MainWindow::clicked_9()
 {
-    anzeige->insert("9");
+   anzeige->insert("9");
 }
 
 void MainWindow::plus_clicked()
 {
    zahl1  = anzeige->text().toDouble();
-    operation = '+';
-    anzeige->clear();
+   operation = '+';
+   anzeige->clear();
 }
 
 void MainWindow::minus_clicked()
 {
-    zahl1 = anzeige->text().toDouble();
-    operation = '-';
-    anzeige->clear();
+   zahl1 = anzeige->text().toDouble();
+   operation = '-';
+   anzeige->clear();
 }
 
 void MainWindow::mal_clicked()
 {
-    zahl1 = anzeige->text().toDouble();
-    operation = '*';
-    anzeige->clear();
+   zahl1 = anzeige->text().toDouble();
+   operation = '*';
+   anzeige->clear();
 }
 
 void MainWindow::geteilt_clicked()
 {
-    zahl1 = anzeige->text().toDouble();
-    operation = '/';
-    anzeige->clear();
+   zahl1 = anzeige->text().toDouble();
+   operation = '/';
+   anzeige->clear();
 }
 
 void MainWindow::AC_clicked()
 {
-    anzeige->clear();
-    //anzeige->setText("0");
-    zahl1 = 0;
-    zahl2 = 0;
-    ergebnis = 0;
+   anzeige->clear();
+   zahl1 = 0;
+   zahl2 = 0;
+   ergebnis = 0;
 }
 
 
